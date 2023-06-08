@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-// error_reporting(0);
+error_reporting(0);
 
 if ($_SESSION['user'] !== "") {
-    $name = $_SESSION['user'];
+    $name = $_SESSION['user']; 
 }
 
 ?>
@@ -22,9 +22,10 @@ if ($_SESSION['user'] !== "") {
         <nav>
             <ol>
                 <li><a href="index.php">Accueil</a></li>
-                <li><a href="inscription.php">Inscription</a></li>
-                <li><a href="connexion.php">Connexion</a></li>
-                <li><a href="profil.php">Profil</a></li>
+                <li><a href="php/signin-login.php">Inscription - Connexion</a></li>
+                <li><a href="php/profil.php">Profil</a></li>
+                <li><a href="php/livre-or.php">Livre d'or</a></li>
+                <li><a href="php/commentaire.php">Commentaire</a></li>
                 <?php if ($_SESSION['user'] == true && $_SESSION['user'] == 'admin') {echo '<li><a href="admin.php">Admin</a></li>';}?>
             </ol>
         </nav>
