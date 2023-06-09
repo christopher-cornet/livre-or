@@ -19,6 +19,7 @@ if ($_SESSION['user'] !== "") {
 </head>
 <body>
     <header>
+        <p><a href="https://github.com/christopher-cornet/livre-or" target="_blank" class="github">Projet Github</a></p>
         <nav>
             <ol>
                 <li><a href="../index.php">Accueil</a></li>
@@ -37,7 +38,7 @@ if ($_SESSION['user'] !== "") {
             <input type="text" placeholder="Nom d'utilisateur*" name="user_login" required>
             <input type="password" placeholder="Mot de passe*" name="password" required>
             <input type="password" placeholder="Confirmation mot de passe*" name="confirmpassword" required>
-            <input class="register" type="submit" name="register_name" value="S'inscrire">
+            <input class="modify" type="submit" name="modify" value="Modifier">
         </form>
     </main>
 </body>

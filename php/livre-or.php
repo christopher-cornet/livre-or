@@ -19,6 +19,7 @@ if ($_SESSION['user'] !== "") {
 </head>
 <body>
     <header>
+        <p><a href="https://github.com/christopher-cornet/livre-or" target="_blank" class="github">Projet Github</a></p>
         <nav>
             <ol>
                 <li><a href="../index.php">Accueil</a></li>

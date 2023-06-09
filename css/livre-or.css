@@ -7,11 +7,11 @@
 }
 
 body {
-    background-color: #A5B452;
+    background-color: #22577a;
 }
 
 header {
-    background-color: #5C573E;
+    background-color: #38A3A5;
     height: 10vh;
     display: flex;
     justify-content: center;
@@ -25,14 +25,14 @@ nav ol li {
 }
 
 a {
-    color: #C8D96F;
+    color: #57CC99;
     font-weight: bold;
     font-size: 16px;
 }
 
 a:hover {
     transition: 0.3s ease;
-    color: #A5B452;
+    color: #80ED99;
     font-weight: bold;
     font-size: 16px;
 }
@@ -40,5 +40,21 @@ a:hover {
 h2 {
     position: absolute;
     right: 5vw;
-    color: #9BA7C0;
+    color: #ffea98;
+}
+
+p {
+    position: absolute;
+    left: 5vw;
+    color: #ffea98;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.github {
+    color: #ffea98;
+}
+
+.github:hover {
+    color: #ffea98;
 }

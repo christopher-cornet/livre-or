@@ -4,7 +4,7 @@ session_start();
 error_reporting(0);
 
 if ($_SESSION['user'] !== "") {
-    $name = $_SESSION['user']; 
+    $name = $_SESSION['user'];
 }
 
 ?>
@@ -19,6 +19,7 @@ if ($_SESSION['user'] !== "") {
 </head>
 <body>
     <header>
+        <p><a href="https://github.com/christopher-cornet/livre-or" target="_blank" class="github">Projet Github</a></p>
         <nav>
             <ol>
                 <li><a href="index.php">Accueil</a></li>
@@ -26,7 +27,6 @@ if ($_SESSION['user'] !== "") {
                 <li><a href="php/profil.php">Profil</a></li>
                 <li><a href="php/livre-or.php">Livre d'or</a></li>
                 <li><a href="php/commentaire.php">Commentaire</a></li>
-                <?php if ($_SESSION['user'] == true && $_SESSION['user'] == 'admin') {echo '<li><a href="admin.php">Admin</a></li>';}?>
             </ol>
         </nav>
         <h2><?php if ($_SESSION['user'] == true) {echo $name;} else {echo "Anonyme";} ?></h2>

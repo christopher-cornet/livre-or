@@ -1,11 +1,24 @@
 <?php
 session_start();
 
-error_reporting(0);
+// error_reporting(0);
 
-if ($_SESSION['user'] !== "") {
-    $name = $_SESSION['user']; 
+// if ($_SESSION['user'] !== "") {
+//     $name = $_SESSION['user']; 
+// }
+
+$db = new PDO ('mysql:host=localhost; dbname=livreor', 'root', '');
+
+if (isset($_POST['register'])) {
+    if (!empty($_POST['user_login']) && !empty($_POST['password']) && !empty($_POST['confirmpassword'])) {
+        $user_login = $_POST['user_login'];
+        $password = $_POST['password'];
+        $query = "INSERT INTO user (id, login, password) VALUES ('', '$user_login', '$password')";
+        $db->query($query);
+    }
 }
+
+if (isset($_POST['login']))
 
 ?>
 <!DOCTYPE html>
@@ -19,6 +32,7 @@ if ($_SESSION['user'] !== "") {
 </head>
 <body>
     <header>
+        <p><a href="https://github.com/christopher-cornet/livre-or" target="_blank" class="github">Projet Github</a></p>
         <nav>
             <ol>
                 <li><a href="../index.php">Accueil</a></li>
@@ -26,18 +40,21 @@ if ($_SESSION['user'] !== "") {
                 <li><a href="profil.php">Profil</a></li>
                 <li><a href="livre-or.php">Livre d'or</a></li>
                 <li><a href="commentaire.php">Commentaire</a></li>
-                <?php if ($_SESSION['user'] == true && $_SESSION['user'] == 'admin') {echo '<li><a href="admin.php">Admin</a></li>';}?>
             </ol>
         </nav>
-        <h2><?php if ($_SESSION['user'] == true) {echo $name;} else {echo "Anonyme";} ?></h2>
     </header>
     <main>
-        <h1>Bienvenue <?php if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1>
+        <!-- <h1>Bienvenue <?php if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1> -->
         <form action="" method="post">
             <input type="text" placeholder="Nom d'utilisateur*" name="user_login" required>
             <input type="password" placeholder="Mot de passe*" name="password" required>
             <input type="password" placeholder="Confirmation mot de passe*" name="confirmpassword" required>
-            <input class="register" type="submit" name="register_name" value="S'inscrire">
+            <input class="register" type="submit" name="register" value="S'inscrire">
+        </form>
+        <form action="" method="post" class="login-form">
+            <input type="text" placeholder="Nom d'utilisateur" name="loginform-user_login" required>
+            <input type="password" placeholder="Mot de passe" name="loginform-password" required>
+            <input class="login" type="submit" name="login" value="Se connecter">
         </form>
     </main>
 </body>
