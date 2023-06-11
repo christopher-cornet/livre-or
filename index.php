@@ -3,7 +3,7 @@ session_start();
 
 error_reporting(0);
 
-if ($_SESSION['user'] !== "") {
+if (!empty($_SESSION['user'])) {
     $name = $_SESSION['user'];
 }
 
@@ -19,7 +19,7 @@ if ($_SESSION['user'] !== "") {
 </head>
 <body>
     <header>
-        <p><a href="https://github.com/christopher-cornet/livre-or" target="_blank" class="github">Projet Github</a></p>
+        <p><a href="https://github.com/christopher-cornet/livre-or" target="_blank" class="github">Github Repository</a></p>
         <nav>
             <ol>
                 <li><a href="index.php">Accueil</a></li>
