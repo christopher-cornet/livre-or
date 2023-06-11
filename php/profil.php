@@ -7,6 +7,18 @@ if (!empty($_SESSION['user'])) {
     $name = $_SESSION['user']; 
 }
 
+if (isset($_POST['modify'])) {
+    if (!empty($_POST['user_login']) && !empty($_POST['password'])) {
+        $user_login = $_POST['user_login'];
+        $password = $_POST['password'];
+        $query = "UPDATE user SET login = '$user_login', password = '$password' WHERE login = '$name' AND password = 'test'";
+        $db->query($query);
+        $query = $db->prepare($sql);
+        $query->execute(array($user_login, $password));
+        $row = $query->rowCount();
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,7 +47,7 @@ if (!empty($_SESSION['user'])) {
     <main>
         <h1>Bienvenue <?php if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1>
         <form action="" method="post">
-            <input type="text" placeholder="<?php if ($_SESSION['user'] == true) {echo $user->get_name;} else {echo "";}?>" name="user_login" required>
+            <input type="text" placeholder="Nom d'utilisateur" name="user_login" required>
             <input type="password" placeholder="Mot de passe" name="password" required>
             <input class="modify" type="submit" name="modify" value="Modifier">
         </form>
