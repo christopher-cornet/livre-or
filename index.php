@@ -26,7 +26,6 @@ if (!empty($_SESSION['user'])) {
                 <li><a href="php/signin-login.php">Inscription - Connexion</a></li>
                 <li><a href="php/profil.php">Profil</a></li>
                 <li><a href="php/livre-or.php">Livre d'or</a></li>
-                <li><a href="php/commentaire.php">Commentaire</a></li>
             </ol>
         </nav>
         <h2><?php if ($_SESSION['user'] == true) {echo $name;} else {echo "Anonyme";} ?></h2>

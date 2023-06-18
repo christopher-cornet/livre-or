@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// error_reporting(0);
+error_reporting(0);
 
 // if (!empty($_SESSION['user'])) {
 //     $name = $_SESSION['user']; 
@@ -55,7 +55,6 @@ if (isset($_POST['login'])) {
                 <li><a href="signin-login.php">Inscription - Connexion</a></li>
                 <li><a href="profil.php">Profil</a></li>
                 <li><a href="livre-or.php">Livre d'or</a></li>
-                <li><a href="commentaire.php">Commentaire</a></li>
             </ol>
         </nav>
     </header>

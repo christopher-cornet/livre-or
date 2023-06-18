@@ -29,8 +29,6 @@ else {
                 <li><a href="signin-login.php">Inscription - Connexion</a></li>
                 <li><a href="profil.php">Profil</a></li>
                 <li><a href="livre-or.php">Livre d'or</a></li>
-                <li><a href="commentaire.php">Commentaire</a></li>
-                <?php if ($_SESSION['user'] == true && $_SESSION['user'] == 'admin') {echo '<li><a href="admin.php">Admin</a></li>';}?>
             </ol>
         </nav>
         <h2><?php if ($_SESSION['user'] == true) {echo $name;} else {echo "Anonyme";} ?></h2>
