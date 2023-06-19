@@ -1,5 +1,7 @@
 <?php
 
+// require('../classes/Database.php');
+
 class User {
     public $login;
     private $password;

@@ -1,10 +1,12 @@
 <?php
-include('../classes/Database.php');
-include('../classes/User.php');
+require('../classes/Database.php');
+// include('../classes/User.php');
 
 session_start();
 
 // error_reporting(0);
+
+$database = new Database;
 
 if (!empty($_SESSION['user'])) {
     $name = $_SESSION['user']; 
@@ -13,10 +15,11 @@ if (!empty($_SESSION['user'])) {
 if (isset($_POST['modify'])) {
     // If the 2 entries are not empty: modify the users data in the database
     if (!empty($_POST['user_login']) && !empty($_POST['password'])) {
-        $user_login = $_POST['user_login'];
-        $password = $_POST['password'];
-        $sql = "SELECT login, password FROM user WHERE login = '$user_login' AND password = ?";
-        $query = "UPDATE user SET login = '$user_login', password = '$password' WHERE login = '$user_login'";
+        
+        // $user_login = $_POST['user_login'];
+        // $password = $_POST['password'];
+        // $sql = "SELECT login, password FROM user WHERE login = '$user_login' AND password = ?";
+        // $query = "UPDATE user SET login = '$user_login', password = '$password' WHERE login = '$user_login'";
         
 
         // "Select password FROM user WHERE login = '$user_login'";
