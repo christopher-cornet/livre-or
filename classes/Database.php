@@ -18,7 +18,7 @@ class Database {
         $user_login = $_POST['user_login'];
         $sql = "UPDATE user SET login = '$user_login' WHERE login = '$name'";
         $query = $this->db->prepare($sql);
-        $query->execute(array($user_login));
+        $query->execute();
         // $query2 = $this->db->prepare($sql2);
         // $query2->execute(array($user_login));
     }
