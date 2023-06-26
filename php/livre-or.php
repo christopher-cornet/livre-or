@@ -4,7 +4,7 @@ session_start();
 error_reporting(0);
 
 if (!empty($_SESSION['user'])) {
-    $name = $_SESSION['user']; 
+    $name = $_SESSION['user'];
 }
 
 ?>
@@ -26,8 +26,7 @@ if (!empty($_SESSION['user'])) {
                 <li><a href="signin-login.php">Inscription - Connexion</a></li>
                 <li><a href="profil.php">Profil</a></li>
                 <li><a href="livre-or.php">Livre d'or</a></li>
-                <li><a href="commentaire.php">Commentaire</a></li>
-                <?php if ($_SESSION['user'] == true && $_SESSION['user'] == 'admin') {echo '<li><a href="admin.php">Admin</a></li>';}?>
+                <?php if ($_SESSION['user'] == true) {echo '<li><a href="commentaire.php">Commentaire</a></li>';} else {echo "";}?>
             </ol>
         </nav>
         <h2><?php if ($_SESSION['user'] == true) {echo $name;} else {echo "Anonyme";} ?></h2>

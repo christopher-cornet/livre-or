@@ -1,4 +1,6 @@
-# Livre d'or
+# Livre d'or (Golden Book)
 Create a guestbook allowing users to leave their opinions on the site.
 <br><br>
-This project is made using classes.
+Users can sign in and login.
+<br><br>
+This project is made using OOP PHP.
