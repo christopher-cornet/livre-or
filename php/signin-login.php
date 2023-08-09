@@ -1,21 +1,27 @@
 <?php
 session_start();
 
-error_reporting(0);
+// error_reporting(0);
 
 // if (!empty($_SESSION['user'])) {
 //     $name = $_SESSION['user']; 
 // }
 
-$db = new PDO ('mysql:host=localhost; dbname=livreor', 'root', '');
+// $db = new PDO ('mysql:host=localhost; dbname=livreor', 'root', '');
 
-if (isset($_POST['register'])) {
-    if (!empty($_POST['user_login']) && !empty($_POST['password']) && !empty($_POST['confirmpassword'])) {
-        $user_login = $_POST['user_login'];
-        $password = $_POST['password'];
-        $query = "INSERT INTO user (id, login, password) VALUES ('', '$user_login', '$password')";
-        $db->query($query);
-    }
+if (isset($_POST['submit'])) {
+    $user_login = $_POST['user_login'];
+    $password = $_POST['password'];
+    $confirmpwd = $_POST['confirmpassword'];
+    
+    include "../classes/Database.php";
+    include "../classes/Signup.php";
+    include "../classes/Signup-contr.php";
+    $signup = new SignupContr($user_login, $password, $confirmpwd);
+
+    $signup->signupUser();
+
+    header("location: ../index.php");
 }
 
 if (isset($_POST['login'])) {
@@ -65,7 +71,7 @@ if (isset($_POST['login'])) {
             <input type="text" placeholder="Nom d'utilisateur*" name="user_login" required>
             <input type="password" placeholder="Mot de passe*" name="password" required>
             <input type="password" placeholder="Confirmation mot de passe*" name="confirmpassword" required>
-            <input class="register" type="submit" name="register" value="S'inscrire">
+            <input class="register" type="submit" name="submit" value="S'inscrire">
         </form>
         <form action="" method="post" class="login-form">
             <h1>Connexion</h1>
