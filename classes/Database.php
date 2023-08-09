@@ -2,31 +2,42 @@
 
 class Database {
     public function __construct() {
-        $this->db = new PDO ('mysql:host=localhost; dbname=livreor', 'root', '');
+        
     }
 
-    // Modify login AND password
+    protected function connect() {
+        try {
+            $username = 'root';
+            $password = '';
+            $db = new PDO ('mysql:host=localhost; dbname=livreor', $username, $password);
+            return $db;
+        }
+        catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
     public function modify_login_password() {
 
     }
 
-    // Modify login
     public function modify_login() {
-        if (!empty($_SESSION['user'])) {
-            $name = $_SESSION['user'];
-        }
         $user_login = $_POST['user_login'];
-        $sql = "UPDATE user SET login = '$user_login' WHERE login = '$name'";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        // $query2 = $this->db->prepare($sql2);
-        // $query2->execute(array($user_login));
+        $sql = "Select password FROM user WHERE login = '$user_login'";
+        $sql2 = "UPDATE login SET login = '$user_login' WHERE login = '$user_login'";
+        $db = new PDO ('mysql:host=localhost; dbname=livreor', $username, $password);
+        $query = $db->prepare($sql);
+        $query->execute(array($user_login));
+        $query2 = $db->prepare($sql2);
+        $query2->execute(array($user_login));
     }
 
-    // Modify password
     public function modify_password() {
 
     }
 }
+
+$database = new Database;
 
 ?>
