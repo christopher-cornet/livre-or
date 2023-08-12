@@ -12,23 +12,6 @@ class SignupContr extends Signup {
     }
 
     public function signupUser() {
-        if ($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
-            exit();
-        }
-        if ($this->invalidLogin() == false) {
-            header("location: ../index.php?error=login");
-            exit();
-        }
-        if ($this->passwordMatch() == false) {
-            header("location: ../index.php?error=login");
-            exit();
-        }
-        if ($this->loginTakenCheck() == false) {
-            header("location: ../index.php?error=pwd");
-            exit();
-        }
-
         $this->setUser($this->login, $this->password);
     }
 
@@ -54,16 +37,16 @@ class SignupContr extends Signup {
         return $result;
     }
 
-    private function passwordMatch() {
-        $result;
-        if ($this->pwd !== $this->confirmpwd) {
-            $result = false;
-        }
-        else {
-            $result = true;
-        }
-        return $result;
-    }
+    // private function passwordMatch() {
+    //     $result;
+    //     if ($this->pwd !== $this->confirmpwd) {
+    //         $result = false;
+    //     }
+    //     else {
+    //         $result = true;
+    //     }
+    //     return $result;
+    // }
 
     private function loginTakenCheck() {
         $result;

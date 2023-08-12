@@ -17,11 +17,15 @@ if (isset($_POST['submit'])) {
     include "../classes/Database.php";
     include "../classes/Signup.php";
     include "../classes/Signup-contr.php";
+
+    $database = new Database();
+    $database->connect();
+
     $signup = new SignupContr($user_login, $password, $confirmpwd);
 
     $signup->signupUser();
 
-    header("location: ../index.php");
+    // header("location: ../index.php");
 }
 
 if (isset($_POST['login'])) {
@@ -68,9 +72,9 @@ if (isset($_POST['login'])) {
         <!-- <h1>Bienvenue <?php //if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1> -->
         <form action="" method="post">
             <h1>Inscription</h1>
-            <input type="text" placeholder="Nom d'utilisateur*" name="user_login" required>
-            <input type="password" placeholder="Mot de passe*" name="password" required>
-            <input type="password" placeholder="Confirmation mot de passe*" name="confirmpassword" required>
+            <input type="text" placeholder="Nom d'utilisateur*" name="user_login"> <!-- required -->
+            <input type="password" placeholder="Mot de passe*" name="password"> <!-- required -->
+            <input type="password" placeholder="Confirmation mot de passe*" name="confirmpassword"> <!-- required -->
             <input class="register" type="submit" name="submit" value="S'inscrire">
         </form>
         <form action="" method="post" class="login-form">

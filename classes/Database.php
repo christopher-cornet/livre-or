@@ -5,11 +5,13 @@ class Database {
         
     }
 
-    protected function connect() {
+    // Connect to the Database
+    public function connect() {
         try {
             $username = 'root';
             $password = '';
             $db = new PDO ('mysql:host=localhost; dbname=livreor', $username, $password);
+            echo "it works";
             return $db;
         }
         catch (PDOException $e) {
@@ -33,11 +35,9 @@ class Database {
         $query2->execute(array($user_login));
     }
 
-    public function modify_password() {
+    // public function modify_password() {
 
-    }
+    // }
 }
-
-$database = new Database;
 
 ?>
