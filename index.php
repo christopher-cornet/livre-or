@@ -3,8 +3,8 @@ session_start();
 
 error_reporting(0);
 
-if (!empty($_SESSION['user'])) {
-    $name = $_SESSION['user'];
+if (!empty($_SESSION['username'])) {
+    $name = $_SESSION["username"];
 }
 
 ?>
@@ -28,8 +28,8 @@ if (!empty($_SESSION['user'])) {
                 <li><a href="php/livre-or.php">Livre d'or</a></li>
             </ol>
         </nav>
-        <h2><?php if ($_SESSION['user'] == true) {echo $name;} else {echo "Anonyme";} ?></h2>
+        <h2><?php if ($_SESSION["username"] == true) {echo $name;} else {echo "Anonyme";} ?></h2>
     </header>
-    <h1>Bienvenue <?php if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1>
+    <h1>Bienvenue <?php if ($_SESSION["username"] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1>
 </body>
 </html>

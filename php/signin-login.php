@@ -1,49 +1,32 @@
 <?php
+
+include "../classes/User.php";
+
 session_start();
 
-// error_reporting(0);
-
-// if (!empty($_SESSION['user'])) {
-//     $name = $_SESSION['user']; 
-// }
-
-// $db = new PDO ('mysql:host=localhost; dbname=livreor', 'root', '');
-
+// Registration validation
 if (isset($_POST['submit'])) {
     $user_login = $_POST['user_login'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
     $confirmpwd = $_POST['confirmpassword'];
-    
-    include "../classes/Database.php";
-    include "../classes/Signup.php";
-    include "../classes/Signup-contr.php";
 
-    $database = new Database();
-    $database->connect();
+    $user = new User($email);
+    $user->register($user_login, $password);
 
-    $signup = new SignupContr($user_login, $password, $confirmpwd);
-
-    $signup->signupUser();
-
-    // header("location: ../index.php");
+    header("location: ../index.php");
 }
 
+// Login validation
 if (isset($_POST['login'])) {
-    if (!empty($_POST['loginform-user_login']) && !empty($_POST['loginform-password'])) {
-        $user_login = $_POST['loginform-user_login'];
-        $password = $_POST['loginform-password'];
-        $sql = "SELECT * FROM user WHERE login=? AND password=? ";
-        $query = $db->prepare($sql);
-        $query->execute(array($user_login, $password));
-        $row = $query->rowCount();
-        if($row > 0) {
-            $_SESSION['user'] = $user_login;
-            header("location: ../index.php");
-        }
-        else {
-            echo "User can't login";
-        }
-    }
+    $email = $_POST['loginform-email'];
+    $password = $_POST['loginform-password'];
+
+    $user = new User($email);
+    $user->connect($password);
+
+    header("location: ../index.php");
+    echo "réussi !";
 }
 
 ?>
@@ -72,14 +55,15 @@ if (isset($_POST['login'])) {
         <!-- <h1>Bienvenue <?php //if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1> -->
         <form action="" method="post">
             <h1>Inscription</h1>
-            <input type="text" placeholder="Nom d'utilisateur*" name="user_login"> <!-- required -->
-            <input type="password" placeholder="Mot de passe*" name="password"> <!-- required -->
-            <input type="password" placeholder="Confirmation mot de passe*" name="confirmpassword"> <!-- required -->
+            <input type="text" placeholder="Nom d'utilisateur*" name="user_login" required>
+            <input type="text" placeholder="Email*" name="email" required>
+            <input type="password" placeholder="Mot de passe*" name="password" required>
+            <input type="password" placeholder="Confirmation mot de passe*" name="confirmpassword" required>
             <input class="register" type="submit" name="submit" value="S'inscrire">
         </form>
         <form action="" method="post" class="login-form">
             <h1>Connexion</h1>
-            <input type="text" placeholder="Nom d'utilisateur" name="loginform-user_login" required>
+            <input type="text" placeholder="Email" name="loginform-email" required>
             <input type="password" placeholder="Mot de passe" name="loginform-password" required>
             <input class="login" type="submit" name="login" value="Se connecter">
         </form>

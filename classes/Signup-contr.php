@@ -11,8 +11,14 @@ class SignupContr extends Signup {
         $this->confirmpwd = $confirmpwd;
     }
 
+    // Signup
     public function signupUser() {
         $this->setUser($this->login, $this->password);
+    }
+
+    // Login
+    public function loginUser() {
+        $this->checkUser($this->login, $this->password);
     }
 
     private function emptyInput() {
