@@ -38,6 +38,7 @@ if (!empty($_SESSION['user'])) {
                 Message
             </article>
         </section>
+        <!-- Fetch dynamically the Comments of the Database -->
     </main>
 </body>
 </html>

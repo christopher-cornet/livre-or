@@ -4,6 +4,8 @@ session_start();
 
 error_reporting(0);
 
+include "../classes/User.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,33 +13,34 @@ error_reporting(0);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/commentaire.css">
-    <title>Commentaires</title>
+    <link rel="stylesheet" href="../css/comments.css">
+    <title>Envoyer un message</title>
 </head>
 <body>
     <?php include "../includes/header.php"; ?>
     <main>
-        <?php
-        // Comment validation
-        if (isset($_POST['send'])) {
-            $comment = $_POST['comment'];
-
-            $user = new User($_SESSION["email"]);
-            $user->addComment($comment, $_SESSION["username"]);
-            
-            // Verify if the User can Log In
-            if (!empty($_SESSION["email"]) && !empty($_SESSION["username"])) {
-                header("location: ../index.php");
-            }
-            elseif (empty($_SESSION["email"]) && empty($_SESSION["username"])) {
-                echo "<br> <b>La connexion a échoué. <br> Veuillez vérifier votre email et votre mot de passe.</b>";
-            }
-        }
-        ?>
         <!-- <h1>Bienvenue <?php if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1> -->
         <form action="" method="post">
             <input type="text" placeholder="Commentaire" name="comment" required>
             <input class="send" type="submit" name="send" value="Valider">
+            <?php
+            // Comment validation
+            if (isset($_POST['send'])) {
+                // If the User is logged in, send the Comment
+                if (!empty($_SESSION["username"])) {
+                    $comment = $_POST['comment'];
+
+                    // If the Comment is not empty, send the Comment. Else, throw a message error
+                    if (!empty($comment)) {
+                        $user = new User($_SESSION["email"]);
+                        $user->addComment($comment, $_SESSION["username"]);
+                    }
+                    else {
+                        echo "<b>Erreur.</b><br>Votre commentaire est vide.";
+                    }
+                }
+            }
+            ?>
         </form>
     </main>
 </body>

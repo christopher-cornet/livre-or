@@ -16,19 +16,17 @@ class User {
     // Register the User
     public function register($username, $password) {
         
-        // Get all the users in the Database
-        $req = $this->pdo->db->prepare( "SELECT * FROM users WHERE email = ?" );
-
-        // Executes a prepared statement by passing it an array containing the value ​​of the parameter
-        $req->execute( [$this->email] );
+        // Get all the Emails in the Database where the Email = $this->email
+        $query = $this->pdo->db->prepare( "SELECT * FROM users WHERE email = ?" );
+        $query->execute( [$this->email] );
 
         // If $user is not empty return False
-        $user = $req->fetch();
+        $user = $query->fetch();
         
         // If $user is empty add the User to the Database if the form is valid
         if(empty($user)) {
-            $req = $this->pdo->db->prepare( "INSERT INTO users (username, email, password) VALUES (?,?,?)" );
-            $req->execute( [$username, $this->email, hash("sha256", $password)] );
+            $query = $this->pdo->db->prepare( "INSERT INTO users (username, email, password) VALUES (?,?,?)" );
+            $query->execute( [$username, $this->email, hash("sha256", $password)] );
             return true;
         }
         
@@ -39,9 +37,9 @@ class User {
     public function connect($password) {
 
         // Authenticate the User based on the email and password
-        $req = $this->pdo->db->prepare( "SELECT * FROM users WHERE email = ? AND password = ?" );
-        $req->execute( [$this->email, hash("sha256", $password)] );
-        $user = $req->fetch();
+        $query = $this->pdo->db->prepare( "SELECT * FROM users WHERE email = ? AND password = ?" );
+        $query->execute( [$this->email, hash("sha256", $password)] );
+        $user = $query->fetch();
         
         // If $user contains a value, define session values
         if ($user) {
@@ -62,7 +60,21 @@ class User {
 
     // Add a Comment to the Golden Book
     public function addComment($comment, $username) {
-        echo 'Posté le ' . date(d/m/Y) . 'par ' . $username . "<br>" . $comment;
+
+        // $date = new DateTime();
+        // $dateFormat = $date->format('Le %d/%m/%Y, à %H:%i:%S');
+
+        // Add the Comment to the Database
+        $query = $this->pdo->db->prepare( "INSERT INTO comments (comment, username, date) VALUES (?,?,CURRENT_TIMESTAMP)" );
+        $query->execute( [$comment, $username] );
+
+        if ($query->rowCount() > 0) {
+            echo "Votre commentaire a été ajouté.";
+        } else {
+            echo "<b>Erreur</b><br>Votre commentaire n'a pas été ajouté.";
+        }
+
+        // echo 'Posté le ' . date(d/m/Y) . à . heure . 'par ' . $username . "<br>" . $comment;
     }
 
     // Edit User's Profile
