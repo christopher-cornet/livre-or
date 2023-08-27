@@ -2,8 +2,6 @@
 
 include "../classes/User.php";
 
-session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,17 +13,7 @@ session_start();
     <title>Inscription - Connexion</title>
 </head>
 <body>
-    <header>
-        <p><a href="https://github.com/christopher-cornet/livre-or" target="_blank" class="github">Github Repository</a></p>
-        <nav>
-            <ol>
-                <li><a href="../index.php">Accueil</a></li>
-                <li><a href="signin-login.php">Inscription - Connexion</a></li>
-                <li><a href="profil.php">Profil</a></li>
-                <li><a href="livre-or.php">Livre d'or</a></li>
-            </ol>
-        </nav>
-    </header>
+    <?php include "../includes/header.php"; ?>
     <main>
         <!-- <h1>Bienvenue <?php //if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1> -->
         <form action="" method="post">
@@ -43,7 +31,7 @@ session_start();
                 $password = $_POST['password'];
                 $confirmpwd = $_POST['confirmpassword'];
 
-                // Verify if the password is the same in the two inputs
+                // If the password is the same in the two inputs Register the User
                 if ($password === $confirmpwd) {
                     $user = new User($email);
                     $user->register($user_login, $password);

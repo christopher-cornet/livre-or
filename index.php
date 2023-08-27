@@ -3,10 +3,6 @@ session_start();
 
 error_reporting(0);
 
-if (!empty($_SESSION['username'])) {
-    $name = $_SESSION["username"];
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,12 +20,13 @@ if (!empty($_SESSION['username'])) {
             <ol>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="php/signin-login.php">Inscription - Connexion</a></li>
-                <li><a href="php/profil.php">Profil</a></li>
+                <li><a href="php/profile.php">Profil</a></li>
                 <li><a href="php/livre-or.php">Livre d'or</a></li>
+                <?php if ($_SESSION['username']) {echo "<li><a href='./php/comments.php'>Commenter</a></li>";} else {echo '';} ?>
             </ol>
         </nav>
         <h2><?php if ($_SESSION["username"] == true) {echo $name;} else {echo "Anonyme";} ?></h2>
     </header>
-    <h1>Bienvenue <?php if ($_SESSION["username"] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1>
+    <h1>Bienvenue <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?> !</h1>
 </body>
 </html>

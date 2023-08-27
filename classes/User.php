@@ -39,7 +39,7 @@ class User {
     // Log In the User
     public function connect($password) {
 
-
+        // Authenticate the User based on the email and password
         $req = $this->pdo->db->prepare( "SELECT * FROM users WHERE email = ? AND password = ?" );
         $req->execute( [$this->email, hash("sha256", $password)] );
         $user = $req->fetch();
@@ -59,6 +59,16 @@ class User {
         $_SESSION["username"] = "";
 
         return false;
+    }
+
+    // Add a Comment to the Golden Book
+    public function addComment($comment, $username) {
+        echo 'Posté le ' . date(d/m/Y) . 'par ' . $username . "<br>" . $comment;
+    }
+
+    // Edit User's Profile
+    public function editProfile($password) {
+
     }
 }
 

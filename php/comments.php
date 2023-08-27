@@ -1,14 +1,8 @@
 <?php
+
 session_start();
 
 error_reporting(0);
-
-if (!empty($_SESSION['user'])) {
-    $name = $_SESSION['user']; 
-}
-else {
-    header("location: ../index.php");
-}
 
 ?>
 <!DOCTYPE html>
@@ -21,20 +15,26 @@ else {
     <title>Commentaires</title>
 </head>
 <body>
-    <header>
-        <p><a href="https://github.com/christopher-cornet/livre-or" target="_blank" class="github">Github Repository</a></p>
-        <nav>
-            <ol>
-                <li><a href="../index.php">Accueil</a></li>
-                <li><a href="signin-login.php">Inscription - Connexion</a></li>
-                <li><a href="profil.php">Profil</a></li>
-                <li><a href="livre-or.php">Livre d'or</a></li>
-            </ol>
-        </nav>
-        <h2><?php if ($_SESSION['user'] == true) {echo $name;} else {echo "Anonyme";} ?></h2>
-    </header>
+    <?php include "../includes/header.php"; ?>
     <main>
-        <h1>Bienvenue <?php if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1>
+        <?php
+        // Comment validation
+        if (isset($_POST['send'])) {
+            $comment = $_POST['comment'];
+
+            $user = new User($_SESSION["email"]);
+            $user->addComment($comment, $_SESSION["username"]);
+            
+            // Verify if the User can Log In
+            if (!empty($_SESSION["email"]) && !empty($_SESSION["username"])) {
+                header("location: ../index.php");
+            }
+            elseif (empty($_SESSION["email"]) && empty($_SESSION["username"])) {
+                echo "<br> <b>La connexion a échoué. <br> Veuillez vérifier votre email et votre mot de passe.</b>";
+            }
+        }
+        ?>
+        <!-- <h1>Bienvenue <?php if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1> -->
         <form action="" method="post">
             <input type="text" placeholder="Commentaire" name="comment" required>
             <input class="send" type="submit" name="send" value="Valider">

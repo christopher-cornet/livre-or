@@ -18,23 +18,25 @@ if (!empty($_SESSION['user'])) {
     <title>Livre d'or</title>
 </head>
 <body>
-    <header>
-        <p><a href="https://github.com/christopher-cornet/livre-or" target="_blank" class="github">Github Repository</a></p>
-        <nav>
-            <ol>
-                <li><a href="../index.php">Accueil</a></li>
-                <li><a href="signin-login.php">Inscription - Connexion</a></li>
-                <li><a href="profil.php">Profil</a></li>
-                <li><a href="livre-or.php">Livre d'or</a></li>
-                <?php if ($_SESSION['user'] == true) {echo '<li><a href="commentaire.php">Commentaire</a></li>';} else {echo "";}?>
-            </ol>
-        </nav>
-        <h2><?php if ($_SESSION['user'] == true) {echo $name;} else {echo "Anonyme";} ?></h2>
-    </header>
+    <?php include "../includes/header.php"; ?>
     <main>
-        <h1>Bienvenue <?php if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1>
+        <h1>Bienvenue <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?> !</h1>
         <section>
-            <article>Posté le jour/mois/année par Utilisateur</article>
+            <article>
+                Posté le jour/mois/année par <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?>
+                <br>
+                Message
+            </article>
+            <article>
+                Posté le jour/mois/année par <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?>
+                <br>
+                Message
+            </article>
+            <article>
+                Posté le jour/mois/année par <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?>
+                <br>
+                Message
+            </article>
         </section>
     </main>
 </body>

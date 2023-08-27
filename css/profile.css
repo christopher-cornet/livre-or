@@ -43,6 +43,36 @@ h2 {
     color: #ffea98;
 }
 
+form {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    width: 20vw;
+    background-color: #38A3A5;
+    padding: 20px;
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.modify {
+    background-color: #ffea98;
+    border-radius: 5px;
+    border-color: #22577a;
+    width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+}
+
 p {
     position: absolute;
     left: 5vw;
@@ -57,15 +87,4 @@ p {
 
 .github:hover {
     color: #ffea98;
-}
-
-section article {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    padding: 15px;
-    max-width: 30vw;
-    margin-bottom: 3vh;
 }
