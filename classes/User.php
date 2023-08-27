@@ -8,8 +8,7 @@ class User {
     public $email;
     private $pdo;
 
-    function __construct($email)
-    {
+    function __construct($email) {
         $this->email = $email;
         $this->pdo = new Database();
     }
