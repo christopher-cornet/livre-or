@@ -39,10 +39,12 @@ class User {
     // Log In the User
     public function connect($password) {
 
+
         $req = $this->pdo->db->prepare( "SELECT * FROM users WHERE email = ? AND password = ?" );
         $req->execute( [$this->email, hash("sha256", $password)] );
         $user = $req->fetch();
         
+        // If $user contains a value, define session values
         if ($user) {
 
             $_SESSION["email"] = $user["email"];
@@ -52,6 +54,10 @@ class User {
 
         }
         
+        // Else if $user do not contains any value, reset session values
+        $_SESSION["email"] = "";
+        $_SESSION["username"] = "";
+
         return false;
     }
 }
