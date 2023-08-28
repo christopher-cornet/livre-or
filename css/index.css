@@ -43,7 +43,7 @@ h2 {
     color: #ffea98;
 }
 
-p {
+header p {
     position: absolute;
     left: 5vw;
     color: #ffea98;
@@ -57,4 +57,19 @@ p {
 
 .github:hover {
     color: #ffea98;
+}
+
+.logout {
+    position: absolute;
+    right: 5vw;
+    top: 3vh;
+    background-color: #FF5E5B;
+    color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background-color: #e04f4c;
+    color: #fff;
 }

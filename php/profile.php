@@ -48,7 +48,6 @@ if (isset($_POST['modify'])) {
 <body>
     <?php include "../includes/header.php"; ?>
     <main>
-        <h1>Bienvenue <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?> !</h1>
         <form action="" method="post">
             <input type="text" placeholder="<?php if ($_SESSION['user'] == true) {echo $name;} else {echo "Nom d'utilisateur";} ?>" name="user_login">
             <input type="password" placeholder="Mot de passe" name="password">

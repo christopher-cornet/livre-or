@@ -3,10 +3,6 @@ session_start();
 
 error_reporting(0);
 
-if (!empty($_SESSION['user'])) {
-    $name = $_SESSION['user'];
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,23 +16,39 @@ if (!empty($_SESSION['user'])) {
 <body>
     <?php include "../includes/header.php"; ?>
     <main>
-        <h1>Bienvenue <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?> !</h1>
         <section>
-            <article>
-                Posté le jour/mois/année par <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?>
-                <br>
-                Message
-            </article>
-            <article>
-                Posté le jour/mois/année par <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?>
-                <br>
-                Message
-            </article>
-            <article>
-                Posté le jour/mois/année par <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?>
-                <br>
-                Message
-            </article>
+            <?php
+            $pdo = new PDO ("mysql:host=localhost; dbname=livreor", "root", "");
+            
+            $sql = "SELECT * FROM comments ORDER BY date DESC";
+
+            $result = $pdo->query ($sql);
+
+            while ($row = $result->fetch (PDO::FETCH_ASSOC)) {
+                // Extraction des données de la ligne courante
+                $id = $row ['id'];
+                $comment = $row ['comment'];
+                $username = $row ['username'];
+                $date = $row ['date'];
+
+                // Formatage de la date selon le format français
+                $date = date ("d/m/Y à H:i:s", strtotime ($date));
+
+                // Affichage des données dans un article
+                echo "<article>";
+                echo "Posté le $date par ";
+                // Si le nom d'utilisateur est vide, on affiche "utilisateur anonyme"
+                if (empty ($username)) {
+                    echo "utilisateur anonyme";
+                } else {
+                    echo "<p>$username</p>";
+                }
+                echo "<br>";
+                echo "<br>";
+                echo $comment;
+                echo "</article>";
+            }
+            ?>
         </section>
         <!-- Fetch dynamically the Comments of the Database -->
     </main>

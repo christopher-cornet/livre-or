@@ -15,7 +15,6 @@ include "../classes/User.php";
 <body>
     <?php include "../includes/header.php"; ?>
     <main>
-        <!-- <h1>Bienvenue <?php //if ($_SESSION['user'] == false) {echo "utilisateur Anonyme"; } else {echo $name;}?> !</h1> -->
         <form action="" method="post">
             <h1>Inscription</h1>
             <input type="text" placeholder="Nom d'utilisateur*" name="user_login" required>

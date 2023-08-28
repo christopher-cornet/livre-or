@@ -15,6 +15,7 @@ error_reporting(0);
             <li><a href="profile.php">Profil</a></li>
             <li><a href="livre-or.php">Livre d'or</a></li>
             <?php if ($_SESSION['username']) {echo "<li><a href='comments.php'>Commenter</a></li>";} else {echo '';} ?>
+            <?php if ($_SESSION['username']) {echo '<li><a href="../index.php" class="logout">Se déconnecter</a></li>';} else {echo '';}?>
         </ol>
     </nav>
 </header>

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 error_reporting(0);
@@ -23,9 +24,9 @@ error_reporting(0);
                 <li><a href="php/profile.php">Profil</a></li>
                 <li><a href="php/livre-or.php">Livre d'or</a></li>
                 <?php if ($_SESSION['username']) {echo "<li><a href='./php/comments.php'>Commenter</a></li>";} else {echo '';} ?>
+                <?php if ($_SESSION['username']) {echo '<a href="./php/logout.php" class="logout">Se déconnecter</a><br>';} else {echo "";}?>
             </ol>
         </nav>
-        <h2><?php if ($_SESSION["username"] == true) {echo $name;} else {echo "Anonyme";} ?></h2>
     </header>
     <h1>Bienvenue <?php if (!$_SESSION['username']) {echo "utilisateur Anonyme"; } else {echo $_SESSION['username'];}?> !</h1>
 </body>
