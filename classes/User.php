@@ -74,7 +74,6 @@ class User {
             echo "<b>Erreur</b><br>Votre commentaire n'a pas été ajouté.";
         }
 
-        // echo 'Posté le ' . date(d/m/Y) . à . heure . 'par ' . $username . "<br>" . $comment;
     }
 
     // Edit User's Profile
