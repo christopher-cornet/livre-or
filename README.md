@@ -22,5 +22,3 @@ You can also view your profile page, where you can see your messages and edit yo
 ## Demo
 You can log in with John Doe's account. Here are the email and password :<br>
 john.doe@gmail.com / test
-
-## Screenshots
